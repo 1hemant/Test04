@@ -1,0 +1,94 @@
+<!-- This is the login form page-->
+<!---HTML files-->
+<link rel="import" href="../..//bower_components/polymer/polymer.html" />
+<link rel="import" href="../../bower_components/paper-button/paper-button.html" />
+<link rel="import" href="../../bower_components/paper-input/paper-input.html" />
+<link rel="import" href="../../bower_components/iron-form/iron-form.html" />
+<link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html" />
+<!---- JAVAScript files-->
+<script src="../scripts/jquery.min.js"></script>
+<script src="../scripts/login-page.js" />
+<script src="../scripts/default.js" />
+<!---CSS files--->
+<link rel="stylesheet" href="../styles/login-page.css" type="text/css"/>
+
+<dom-module id="login-page" attributes="url">
+<!--    <script>var urlLogin = "https://uat-analytics.thecarecloud.com/netlink/plugin/cda/api/doQuery?path=/public/UAT/Landing Page/Telecom Business Brain/Categories/Network Management/Network Insights.cda&dataAccessId=DonutChart&parampWeekEnd='26-Apr-2015'&parampDate='All'&parampFlag='All'&parampDistrict='All'&parampCity='All'&parampHour='All'&parampBTS='All'&parampDonut='All'"</script>-->
+        <template>
+            <hgroup>
+              <h1>Netlink Login Form</h1>
+            </hgroup>
+            <form form is="iron-form" id="form" method="post" >
+                <div><paper-input id="txtUsername" label="Username" value="{{username}}" floatinglabel></paper-input></div>
+                <div><paper-input id="txtPassword" label="Password" type="password" value="{{password}}" floatinglabel></paper-input></div>
+                <div>
+                <paper-button type="submit" raisedbutton label="Custom Submit" on-tap="gologin">Log In</paper-button> 
+                </div>
+            </form>
+            <footer><a href="http://www.polymer-project.org/" target="_blank"><img src="../images/Netlink_logo.png" ></a>
+              <p>You Gotta Love <a href="http://www.netlink.com/" target="_blank">Netlink</a></p>
+            </footer>
+           
+    
+        </template>                          
+  
+
+    
+    <script>
+        Polymer({
+           is: "login-page",
+           properties: {
+               status:{
+                   type: Boolean,
+                   value: false,
+                   notify: true,
+                   observer: 'statusObserver'
+               }
+           },
+           statusObserver: function(){
+                console.log("Login_page: "+this.status);
+           },
+         /*  gologin: function(e) {
+                window.location.href = e.target.getAttribute('link');
+            },*/
+            gologin: function(e){
+                if((this.username == "admin")&&(this.password == "admin"))
+                {
+                    this.status = true;
+                }
+                 //document.getElementById('form').submit();
+                 //console.log("Submitted");
+                 /*
+                 $.ajaxSetup({
+                    headers: {
+                      'Authorization': "Basic " + btoa('iostest@netlink.co' + ":" + 'test1234')
+                    }
+                  });
+                    var cat = [];
+                    var data = [];
+                    $.get(urlLogin).done(function (e) {
+                        //console.log(e);
+                        for(i = 0; i < e.resultset.length; ++i){
+                            cat.push(e.resultset[i][3]);
+                            data.push(e.resultset[i][0]);
+                        }
+                        line(cat, data);
+                        console.log(data);
+                    })
+                            .fail(function(){
+                                alert("Error");
+                        load.myValue = true;
+                    })
+                   */
+                /* $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: data,
+                    success: success,
+                    dataType: dataType
+                  });*/
+             }
+        });
+    </script>
+
+</dom-module>

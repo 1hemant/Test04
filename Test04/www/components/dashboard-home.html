@@ -1,0 +1,99 @@
+<link rel="import"  href="../bower_components/polymer/polymer.html">
+<link rel="import"  href="../bower_components/paper-material/paper-material.html">
+<link rel="import"  href="../bower_components/paper-card/paper-card.html">
+<link rel="import"  href="../bower_components/paper-button/paper-button.html">
+<link rel="import"  href="../bower_components/paper-icon-button/paper-icon-button.html">
+
+<dom-module id="dashboard-home">
+    <style is="custom-style" include="shared-styles">
+      
+      paper-card
+      {
+          --paper-card-header-color:white;
+      }
+      .card-content
+      {
+          color:white;
+      }
+      .card-actions
+      {
+           color:white;
+      }
+      paper-tabs
+      {
+          color:white;
+          background-color:#3F51B5;
+      }
+        paper-material
+        {
+            padding: 5px;
+        }
+    
+    
+    </style>
+<template>
+    
+    <!-- Displying Widgets in the dashboard home -->
+    
+     <paper-material elevation="1">
+         
+                  <!-- Widgets 1 -->
+         
+                  <paper-card heading="Card 1" style="background-color:#3cba54;width:100%">
+                      <div class="card-content">Content Goes Here</div>
+                      <div class="card-actions">
+                       <paper-button><iron-icon icon="check"></iron-icon>&nbsp;Button</paper-button>
+                      </div>
+                    </paper-card>
+                   <br>
+                   <br>
+         
+                  <!-- Widgets 2 -->
+                   <paper-card heading="Card 2" style="background-color:#f4c20d;width:100%">
+                      <div class="card-content" >Content Goes Here</div>
+                      <div class="card-actions">
+                       <paper-button>YES</paper-button>
+                          <paper-button>NO</paper-button>
+                      </div>
+                    </paper-card>
+                  
+                   <br>
+                   <br>
+         
+                  <!-- Widgets 3 -->
+                   <paper-card heading="Card 3" style="width:100%" image="images/landscape.jpg">
+                      <!-- <div class="card-content">Content Goes Here</div>
+                      <div class="card-actions">
+                       <paper-button>YES</paper-button>
+                          <paper-button>NO</paper-button>
+                      </div>  -->
+                       
+                    </paper-card>
+                  <br>
+                  <br>
+                <!-- Widgets 4 -->
+         
+                   <paper-card heading="Card 3" style="background-color:#f44336;width:100%">      
+
+                      <div class="card-content" >Content Goes Here</div>
+                      <div class="card-actions">
+                       <paper-icon-button icon="book" title="heart"></paper-icon-button>
+                          <paper-icon-button  icon="reply" title="reply"></paper-icon-button>
+                      </div>
+                    </paper-card>
+    </paper-material>
+                  
+    
+</template>
+    
+    <script>
+    Polymer({
+        is:"dashboard-home"
+        
+    });
+    
+    
+    </script>
+
+
+</dom-module>

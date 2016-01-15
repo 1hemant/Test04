@@ -1,0 +1,21 @@
+{
+  "name": "bower_components",
+  "authors": [
+    "sumit <schouksey@netlink.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "paper-swipe": "~0.4.2"
+  }
+}

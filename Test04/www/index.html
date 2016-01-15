@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--- First page in the application --->
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+   <!-- <meta name="mobile-web-app-capable" content="yes"> -->
+    <title>Dashboard Project</title>
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="bower_components/paper-input/paper-input.html">
+    <link rel="import" href="bower_components/paper-button/paper-button.html">
+    <link rel="import" href="bower_components/paper-material/paper-material.html">
+    <link rel="import" href="components/swipe-page.html">
+    
+    </head>
+    <script>
+     //window.location="dashboard.html";
+       
+    function goLogin()
+        {
+            var user = document.getElementById("txtUsername");
+             var pwd = document.getElementById("txtPassword");
+             
+             if(user.value=="admin" && pwd.value=="admin")
+                 {
+                     window.location="dashboard.html";
+                    
+                 }
+            else
+            {
+                 alert("Invalid Credentials");
+            }
+           
+             
+        }
+        
+     
+        
+     
+     
+        
+        
+    </script>
+    <style>
+    paper-material
+        {
+            padding: 15px;
+        }
+    
+    </style>
+    
+<body>
+  <!--<swipe-page></swipe-page> -->
+
+      <hgroup>
+          <center>
+                <h1>Netlink Login Form</h1>
+          </center>
+            
+            </hgroup>
+    <paper-material elevation="2">
+              <form form is="iron-form" id="form" method="post" >
+                <div><paper-input id="txtUsername" label="Username" floatinglabel></paper-input></div>
+                <div><paper-input id="txtPassword" label="Password" type="password" floatinglabel></paper-input></div>
+                <div>
+                <paper-button type="submit" raisedbutton label="Custom Submit" onclick="goLogin()">Log In</paper-button> 
+                </div>
+            </form>
+    
+    
+    </paper-material>
+          <br>
+                <center>
+                         <footer>
+                             <a href="http://www.polymer-project.org/" target="_blank"><img src="../images/Netlink_logo.png" ></a>               
+                             <p>You Gotta Love <a href="http://www.netlink.com/" target="_blank">Netlink</a></p>
+                        </footer>
+                </center>
+
+
+    
+           
+</body>
+</html>

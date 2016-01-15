@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+       
+        <script src="js/jquery-2.1.4.js"></script>
+        <script src="js/jquery.touchSwipe.min.js"></script>
+        
+    </head>
+    <body>
+        <div id="test" style="height:300px; width:300px; background-color:coral">
+            Swipe Me 
+        </div>
+        <script>
+        $(function() {      
+      $("#test").swipe( {
+                swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+                  $("#test").text("You swiped " + direction + " with " + fingerCount + " fingers");
+                },
+                threshold:0,
+                fingers:'all'
+              });
+            });
+        
+        </script>   
+    </body>
+    
+    
+</html>

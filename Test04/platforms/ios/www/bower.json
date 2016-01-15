@@ -1,0 +1,22 @@
+{
+  "name": "dashboard",
+  "authors": [
+    "sumit <schouksey@netlink.com>"
+  ],
+  "description": "polymer",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#1.2.0",
+    "jquery-touchswipe": "~1.6.15"
+  }
+}

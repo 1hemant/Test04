@@ -1,0 +1,284 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Polymer Starter Kit" />
+  <title>Dashboards</title>
+  <!-- Place favicon.ico in the `app/` directory -->
+  <!-- Chrome for Android theme color -->
+  <meta name="theme-color" content="#2E3AA1">
+  <!-- Web Application Manifest -->
+  <link rel="manifest" href="manifest.json">
+  <!-- Tile color for Win8 -->
+  <meta name="msapplication-TileColor" content="#3372DF">
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="PSK">
+  <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Polymer Starter Kit">
+  <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+
+  <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+   <link rel="stylesheet" href="styles/animate.css">
+  <!-- endbuild-->  
+  <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+      
+  <!-- endbuild -->
+  <!-- will be replaced with elements/elements.vulcanized.html -->
+  <link rel="import" href="elements/elements.html">
+   <link rel="import"  href="components/dashboard-home.html">   
+    <link rel="import" href="components/dashboard-bsnl.html">
+  <!-- endreplace-->
+    
+  <!-- For shared styles, shared-styles.html import in elements.html -->
+  <style is="custom-style" include="shared-styles">
+      
+     
+      paper-tabs
+      {
+          color:white;
+          background-color:#3F51B5;
+      }
+      paper-toolbar#drawerToolbar
+        {
+                background-color: var(--paper-blue-900);
+                background-image: url(images/landscape.jpg);
+            
+               
+        }
+      paper-toolbar#mainToolbar
+      {
+          background-color: var(--paper-blue-500);
+      }
+     img
+        {
+                border-radius: 50%;
+                height: 60px;
+                width: 60px;
+                margin-top: 30px;
+                border: 3px solid white;
+        }
+     
+    
+    </style>
+    <script>
+    var drawer = document.getElementById("paperDrawerPanel");
+        console.log(drawer);
+        
+    
+    </script>
+
+</head>
+
+<body unresolved class="fullbleed layout vertical">
+  <span id="browser-sync-binding"></span>
+  <template is="dom-bind" id="app">
+
+    <paper-drawer-panel id="paperDrawerPanel" narrow>
+      <!-- Drawer Scroll Header Panel -->
+      <paper-scroll-header-panel drawer fixed >
+          
+          <!-- Drawer Toolbar -->
+          
+          
+        <paper-toolbar id="drawerToolbar" style="height:130px;">
+            <div>
+            <img src="images/person.png"/>            
+            </div><br>
+           <div style="color:white; margin-top:130px;margin-left:-50px">admin@netlink.com </div>          
+        </paper-toolbar>  
+
+        <!-- Drawer Content -->
+          
+        <paper-menu class="list" attr-for-selected="data-route" selected="[[route]]">
+          <a data-route="home" href="{{baseUrl}}">
+            <iron-icon icon="home"></iron-icon>
+            <span>Home</span>
+          </a>
+            <p style="border-bottom:1px solid gray; margin-top:-15px; margin-bottom:5px; margin-left:5px; margin-right:5px"> &nbsp;</p>
+
+          <a data-route="dashboard">
+            <iron-icon icon="info"></iron-icon>
+            <span>Dashboard</span>
+            </a>
+            
+             <a data-route="bsnl" href="{{baseUrl}}bsnl" onclick="handleBsnlClick()">                
+                <span><ul style="margin-left:50px">  
+                        <li>BSNL</li>                        
+                      </ul>
+                </span>
+            </a>
+            
+             <a data-route="trw" href="{{baseUrl}}trw" onclick="handleTrwClick()">                
+                <span><ul style="margin-left:50px;">  
+                        <li>TRW</li>                        
+                      </ul>
+                </span>
+            </a>
+            <p style="border-bottom:1px solid gray; margin-top:-15px; margin-bottom:5px; margin-left:5px; margin-right:5px"> &nbsp;</p>
+            
+            <a data-route="setting" >
+            <iron-icon icon="settings"></iron-icon>
+            <span>Settings</span>
+          </a>
+        </paper-menu>
+
+
+      </paper-scroll-header-panel>
+       
+
+      <!-- Main Area -->
+      <paper-scroll-header-panel main id="headerPanelMain" condenses keep-condensed-header>
+
+        <!-- Main Toolbar -->
+        <paper-toolbar id="mainToolbar" class="tall" >
+          <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
+          <span class="flex"></span>
+
+          <!-- Toolbar icons -->
+          <paper-icon-button icon="refresh"></paper-icon-button>
+          <paper-icon-button icon="search"></paper-icon-button>
+
+          <!-- Application name -->
+          <div class="middle middle-container center horizontal layout">
+            <div class="app-name">Welcome to Dashboard </div>
+          </div>
+
+          <!-- Application sub title -->
+          <div class="bottom bottom-container center horizontal layout">
+            <div class="bottom-title paper-font-subhead">Text to display</div>
+          </div>
+
+        </paper-toolbar>
+
+        <!-- Main Content -->
+        <div class="content">
+            
+          <iron-pages attr-for-selected="data-route" selected="{{route}}">
+              
+            <!-- Home Section -->
+            <section data-route="home">  
+                <!-- Using Custom Component for dashboard home -->
+                    <dashboard-home></dashboard-home>
+            </section>
+            <!-- End -->             
+              
+            <!-- BSNL Section -->
+            <section data-route="bsnl">  
+                 <!-- Using Custom Component for BSNL dashboard which will display charts -->
+                <dashboard-bsnl></dashboard-bsnl>
+                
+               
+                
+            </section>
+            <!-- End -->
+           
+            <!-- TRW Section -->
+            <section data-route="trw">
+                              
+            </section>
+             <!-- End -->
+              
+          </iron-pages>
+        </div>
+      </paper-scroll-header-panel>
+    
+ </paper-drawer-panel>
+    <paper-toast id="toast">
+      <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>
+    </paper-toast>
+
+
+  </template>
+
+  <!-- build:js scripts/app.js -->
+  <script src="scripts/app.js"></script>
+  <!-- endbuild-->
+    <script>
+     
+        
+        
+         function onTrwTabSelected()
+        {
+           var tabs = document.getElementById("trwTabs");
+            var pages  = document.getElementById("trwPages");
+            //console.log(pages.childElementCount);
+            if(tabs.selected==0)
+                {
+                    //console.log("Current Tab "+tabs.selected);
+                     $('#trwP1').addClass('animated fadeInRight');
+                   lineChart();
+                   
+                }
+            if(tabs.selected==1)
+                {
+                   // console.log("Current Tab "+tabs.selected);
+                    
+                   $('#trwP2').addClass('animated fadeInRight');
+                   pieCharts();
+                     
+                }
+            if(tabs.selected==2)
+                {
+                   // console.log("Current Tab "+tabs.selected);
+                     $('#trwP3').addClass('animated fadeInRight');
+                    barCharts();
+                    
+                }
+        }
+        
+        
+        
+      
+        
+    
+        
+        function handleBsnlClick()
+        {
+            $('#bsnlChart').addClass('animated zoomIn');
+             //displayLineChart();
+           
+            setTimeout(function()                      
+            {
+                displayLineChart();
+            },1000); 
+            
+            
+        }
+        
+         function handleTrwClick()
+        {
+            //alert("BSNL Clicked");
+            var tabs = document.getElementById("trwTabs");
+            var pages  = document.getElementById("trwPages");
+            tabs.selected="0";
+            pages.selected="0";
+            $('#trwP1').addClass('animated fadeInRight');
+            lineChart();
+        }
+       
+        
+
+    </script>
+</body>
+
+</html>

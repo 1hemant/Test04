@@ -1,0 +1,262 @@
+<!-- this is the page after login which has dashboards --->
+<link rel="import" href="../bower_components/polymer/polymer.html" />
+<link rel="import" href="login-page.html" />
+<link rel="import" href="../elements/elements.html">
+<link rel="import"  href="landing-page.html" />
+<!---JavaScript files ---->
+<script src="../bower_components/webcomponentsjs/webcomponents-lite.js" />
+<script src="../scripts/jquery.min.js" />
+<script src="../scripts/highcharts.js" /> 
+<script src="../scripts/filterChanged.js" />
+<script src="../scripts/braCharts.js" />
+<script src="../scripts/lineChart.js" />
+<script src="../scripts/pieCharts.js" />
+<script src="../scripts/onTrwTabSelected.js" />
+<script src="../scripts/onBsnlTabSelected.js" />
+<script src="../scripts/displayPieChart.js" />
+<script src="../scripts/displayLineChart.js" />
+<script src="../scripts/displayBarCharts.js" />
+<!---CSS files--->
+<link rel="stylesheet" href="../styles/main.css">
+<link rel="stylesheet" href="../styles/animate.css">
+<!----PNG files -->
+<link rel="icon" sizes="192x192" href="../images/touch/chrome-touch-icon-192x192.png">
+<link rel="apple-touch-icon" href="../images/touch/apple-touch-icon.png">
+   
+<dom-module id="landing-page-01" attributes="url">
+
+        <template>
+            
+            <style is="custom-style" include="shared-styles">
+      
+                paper-card
+                {
+                    --paper-card-header-color:white;
+                }
+                .card-content
+                {
+                    color:white;
+                }
+                .card-actions
+                {
+                     color:white;
+                }
+                paper-tabs
+                {
+                    color:white;
+                    background-color:#3F51B5;
+                }
+            </style>
+    
+    <span id="browser-sync-binding"></span>
+    <template is="dom-bind" id="app">
+
+    <paper-drawer-panel id="paperDrawerPanel">
+      <!-- Drawer Scroll Header Panel -->
+      <paper-scroll-header-panel drawer fixed>
+
+        <!-- Drawer Toolbar -->
+        <paper-toolbar id="drawerToolbar">
+          <span class="paper-font-title">Menu</span>
+        </paper-toolbar>
+
+        <!-- Drawer Content -->
+        <paper-menu class="list" attr-for-selected="data-route" selected="[[route]]">
+          <a data-route="home" href="{{baseUrl}}">
+            <iron-icon icon="home"></iron-icon>
+            <span>Home</span>
+          </a>
+            
+
+          <a data-route="dashboard">
+            <iron-icon icon="info"></iron-icon>
+            <span>Dashboard</span>
+            </a>
+            
+             <a data-route="bsnl" href="{{baseUrl}}bsnl" onclick="handleBsnlClick()">                
+                <span><ul style="margin-left:50px">  
+                        <li>BSNL</li>                        
+                      </ul>
+                </span>
+            </a>
+            
+             <a data-route="trw" href="{{baseUrl}}trw" onclick="handleTrwClick()">                
+                <span><ul style="margin-left:50px;">  
+                        <li>TRW</li>                        
+                      </ul>
+                </span>
+            </a>
+
+        </paper-menu>
+      </paper-scroll-header-panel>
+
+      <!-- Main Area -->
+      <paper-scroll-header-panel main id="headerPanelMain" condenses keep-condensed-header>
+
+        <!-- Main Toolbar -->
+        <paper-toolbar id="mainToolbar" class="tall">
+          <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
+          <span class="flex"></span>
+
+          <!-- Toolbar icons -->
+          <paper-icon-button icon="refresh"></paper-icon-button>
+          <paper-icon-button icon="search"></paper-icon-button>
+
+          <!-- Application name -->
+          <div class="middle middle-container center horizontal layout">
+            <div class="app-name">Welcome to Dashboard </div>
+          </div>
+
+          <!-- Application sub title -->
+          <div class="bottom bottom-container center horizontal layout">
+            <div class="bottom-title paper-font-subhead">Text to display</div>
+          </div>
+
+        </paper-toolbar>
+
+        <!-- Main Content -->
+        <div class="content">
+          <iron-pages attr-for-selected="data-route" selected="{{route}}">
+
+            <section data-route="home">
+                
+              <paper-material elevation="1">
+                  
+                  <paper-card heading="Card 1" style="background-color:#3cba54;width:100%">
+                      <div class="card-content">Content Goes Here</div>
+                      <div class="card-actions">
+                       <paper-button><iron-icon icon="check"></iron-icon>&nbsp;Button</paper-button>
+                      </div>
+                    </paper-card>
+                   <br>
+                  <br>
+                   <paper-card heading="Card 2" style="background-color:#f4c20d;width:100%">
+                      <div class="card-content" >Content Goes Here</div>
+                      <div class="card-actions">
+                       <paper-button>YES</paper-button>
+                          <paper-button>NO</paper-button>
+                      </div>
+                    </paper-card>
+                  
+                   <br>
+                  <br>
+                   <paper-card heading="Card 3" style="width:100%" image="images/landscape.jpg">
+                    </paper-card>
+                  <br>
+                  <br>
+                   <paper-card heading="Card 3" style="background-color:#f44336;width:100%">
+                      <div class="card-content" >Content Goes Here</div>
+                      <div class="card-actions">
+                       <paper-icon-button icon="book" title="heart"></paper-icon-button>
+                          <paper-icon-button  icon="reply" title="reply"></paper-icon-button>
+                      </div>
+                    </paper-card>
+                </paper-material>
+            </section>
+            <section data-route="bsnl">
+                  <paper-tabs selected="{{selected}}" id="bsnlTabs" onclick="onBsnlTabSelected()">
+                      <paper-tab>Line</paper-tab>
+                      <paper-tab>Pie</paper-tab>
+                      <paper-tab>Bar</paper-tab>
+                    </paper-tabs>
+                    <iron-pages selected="{{selected}}" id="bsnlPages">
+                        <div>
+                          <paper-material>
+                                 <paper-dropdown-menu label="Cities" style="width:100%" onclick="filterChanged()" id="filter">
+                                  <paper-menu class="dropdown-content">
+                                    <paper-item>All</paper-item>
+                                    <paper-item>Tokyo</paper-item>
+                                    <paper-item>New York</paper-item>
+                                    <paper-item>London</paper-item>
+                                  </paper-menu>
+                          </paper-dropdown-menu>
+                          </paper-material>
+                            <paper-material elevation="2" style="height:350px" id="bsnlP1">
+                          
+                            </paper-material>
+                        
+                        
+                        </div>
+                        
+                        
+                         <paper-material elevation="2" style="height:350px" id="bsnlP2">   
+                        </paper-material>
+                         <paper-material elevation="2" style="height:300px" id="bsnlP3">
+                        </paper-material>
+                    </iron-pages>
+              </paper-material>
+            </section>
+              
+            <section data-route="trw">
+              <paper-tabs selected="{{selected1}}" id="trwTabs" onclick="onTrwTabSelected()">
+                  <paper-tab>Line</paper-tab>
+                  <paper-tab>Pie</paper-tab>
+                  <paper-tab>Bar</paper-tab>
+                </paper-tabs>
+
+                <iron-pages selected="{{selected1}}" id="trwPages">
+                  <paper-material elevation="2" style="height:350px" id="trwP1">
+                        </paper-material>                     
+                        
+                         <paper-material elevation="2" style="height:350px" id="trwP2">   
+                        </paper-material>
+                                                                 
+                         <paper-material elevation="2" style="height:300px" id="trwP3">
+                        </paper-material>
+                </iron-pages>
+            </section>
+
+          </iron-pages>
+        </div>
+      </paper-scroll-header-panel>
+    </paper-drawer-panel>
+
+    <paper-toast id="toast">
+      <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>
+    </paper-toast>
+
+  </template>
+
+  <!-- build:js scripts/app.js -->
+  <script src="../scripts/app.js"></script>
+  <!-- endbuild-->
+    <script>
+      
+        
+        
+        //Poluplating and Displaying Charts for TRW Section 
+            
+         
+
+    </script>
+
+    
+        </template>                          
+  
+
+    
+    <script>
+        Polymer({
+           is: "landing-page-01",
+           handleTrwClick: function(){
+                //alert("BSNL Clicked");
+                var tabs = document.getElementById("trwTabs");
+                var pages  = document.getElementById("trwPages");
+                tabs.selected="0";
+                pages.selected="0";
+                $('#trwP1').addClass('animated fadeInRight');
+                lineChart();
+           },
+           handleBsnlClick: function(){
+                //alert("BSNL Clicked");
+                var tabs = document.getElementById("bsnlTabs");
+                var pages  = document.getElementById("bsnlPages");
+                tabs.selected="0";
+                pages.selected="0";
+                $('#bsnlP1').addClass('animated fadeInRight');
+                displayLineChart();
+           }
+        });
+    </script>
+
+</dom-module>

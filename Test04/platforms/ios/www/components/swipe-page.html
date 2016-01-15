@@ -1,0 +1,61 @@
+
+<link rel="import"  href="../bower_components/polymer/polymer.html">
+<link rel="import"  href="../bower_components/paper-material/paper-material.html">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>   
+<script src="../scripts/jquery.touchSwipe.min.js"></script>  
+<script>
+ 
+
+</script>
+
+<dom-module id="swipe-page">
+  
+<template>
+    
+  
+    <paper-material id="test" style="width:400px ; height:400px; background-color:red">Swipe Me</paper-material>
+     <script>
+    $(function() {      
+      $("#test").swipe( {
+        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+          $("#test").text("You swiped " + direction + " with " + fingerCount + " fingers");
+        },
+        threshold:0,
+        fingers:'all'
+      });
+    });
+                </script>
+   
+       <!--    <paper-material elevation="1" style="height:350px" id="bsnlChart" > </paper-material>  -->
+    
+    
+      
+</template>
+    
+    <script>
+        
+       
+    Polymer({
+        is:"swipe-page",
+        
+    });
+        
+          
+
+  $("#test").swipe( {
+    //Generic swipe handler for all directions
+    swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+       //alert("Swipped");
+     $("#test").text("You swiped " + direction );  
+    }
+  });
+
+  
+
+    
+        
+        
+    </script>
+
+
+</dom-module>

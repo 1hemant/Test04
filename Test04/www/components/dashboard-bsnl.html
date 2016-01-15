@@ -1,0 +1,72 @@
+
+<link rel="import"  href="../bower_components/polymer/polymer.html">
+<link rel="import"  href="../bower_components/paper-material/paper-material.html">
+<script src="../scripts/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="../scripts/jquery.touchSwipe.min.js"></script>
+<script src="../charts/js/highcharts.js"></script>
+<script src="../charts/lineChart.js"></script>
+
+
+<dom-module id="dashboard-bsnl">
+    <style>
+    paper-material
+        {
+            border-top: 2px solid var(--paper-blue-500);
+        }
+    
+    </style>
+  
+<template>
+    
+    <p style="width:100%" id="status">&nbsp;</p>
+    <p style="width:100%" id="status1">&nbsp;</p>
+    <paper-material elevation="1" style="height:350px" id="bsnlChart" > </paper-material> 
+     <script>
+    $(function() {      
+      $("#bsnlChart").swipe( {
+        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+        // console.log("You swiped " + direction + " with " + fingerCount + " fingers");
+            
+            if(direction=="left")
+                {
+                    changeDimenssionToYear();
+                    document.getElementById("status").innerHTML="Dimenssion : <b> Year </b>";
+                }
+            if(direction=="right")
+                {
+                    changeDimenssionToMonth();
+                    document.getElementById("status").innerHTML="Dimenssion : <b> Month</b>";
+                }
+            if(direction=="up")
+                {
+                    changeTempratureToFerheniet();                   
+                    document.getElementById("status1").innerHTML="Temprature : <b> Farheniet </b>";
+                    
+                }
+            if(direction=="down")
+                {
+                     changeTempratureToCelcius();
+                    document.getElementById("status1").innerHTML="Temprature : <b> Celcius </b>";
+                }
+        },
+        threshold:0,
+        fingers:'all'
+      });
+    });
+                </script>
+
+</template>
+    
+    <script>
+        var xCor , yCor ;
+        
+       
+    Polymer({
+        is:"dashboard-bsnl"
+        
+    });
+        
+</script>
+
+
+</dom-module>

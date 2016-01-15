@@ -1,0 +1,100 @@
+<link rel="import"  href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../elements/elements.html">
+<link rel="import" href="../elements/routing.html">
+<link rel="stylesheet" href="../styles/main.css">
+<script src="../scripts/app.js"></script>
+
+<dom-module id="dashboard-drawer">
+        <style is="custom-style" include="shared-styles">
+            paper-toolbar
+            {
+                --paper-toolbar-background:#5C6BC0;
+                /*background-image: url(../images/landscape.jpg);*/
+               
+            }
+            img
+            {
+                border-radius: 50%;
+                height: 70px;
+                width: 70px;
+                margin-top: 30px;
+                border: 1px groove smokewhite;
+            }
+            paper-item
+            {
+                --paper-item-min-height:20px;
+            }
+            span
+            {
+                margin-top: 20px;
+                margin-left: 16p;
+                line-height: 1.6em;
+            }
+            a
+            {
+                text-decoration: none;
+                color: black;
+            }
+    
+       </style>
+<template>
+    
+       <!-- Drawer Toolbar -->
+        <paper-toolbar id="drawerToolbar" style="height:130px;">
+            <div>
+            <img src="../images/person.png"/>            
+            </div><br>
+           <div style="color:white; margin-top:130px;margin-left:-50px">admin@netlink.com </div>          
+        </paper-toolbar>    
+         
+       <!-- Drawer Content  -->
+    
+        <paper-menu class="list" attr-for-selected="data-route" selected="[[route]]">
+            
+          <a data-route="home" href="{{baseUrl}}">
+            <iron-icon icon="home"></iron-icon>
+            <span>Home</span> <br>
+          </a>
+            
+
+          <a data-route="dashboard">
+            <iron-icon icon="info"></iron-icon>
+            <span>Dashboard</span>
+            </a>
+            
+             <a data-route="bsnl" href="{{baseUrl}}bsnl" onclick="handleBsnlClick()">                
+                <span><ul style="margin-left:50px">  
+                        <li>BSNL</li>                        
+                      </ul>
+                </span>
+            </a>
+            
+             <a data-route="trw" href="{{baseUrl}}trw" onclick="handleTrwClick()">                
+                <span><ul style="margin-left:50px;">  
+                        <li>TRW</li>                        
+                      </ul>
+                </span>
+            </a>
+            
+        </paper-menu>
+
+
+
+    
+ 
+    
+    
+    
+</template>
+    
+    <script>
+    Polymer({
+        is:"dashboard-drawer"
+        
+    });
+    
+    
+    </script>
+
+
+</dom-module>
